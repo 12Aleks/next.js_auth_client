@@ -46,7 +46,11 @@ export const authOptions: NextAuthOptions = {
                 return user;
             }
         })
-    ]
+    ],
+
+    callbacks: {
+
+    }
 };
 
 //указываем, что любой запрос .api/auth/должен обробатываться кодом выше
