@@ -48,8 +48,19 @@ export const authOptions: NextAuthOptions = {
         })
     ],
 
-    callbacks: {
 
+    //for correct action control (session/jwt/redirect/signIn)
+    callbacks: {
+        async jwt({token, user}){
+           if(user) return {...token, ...user};
+           return token;
+        },
+        async session({token, session}){
+            session.user = token.user;
+            session.backendTokens = token.backendTokens;
+
+            return session;
+        }
     }
 };
 
