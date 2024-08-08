@@ -19,18 +19,18 @@ const SignupPage = () => {
         password: ''
     })
 
-
     const register = async () => {
+
         const res = await fetch(Backend_URL + "/api/auth/register", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
                 name: data.current.name,
                 email: data.current.email,
                 password: data.current.password,
-            }),
-            headers: {
-                "Content-Type": "application/json",
-            },
+            })
         });
         if (!res.ok) {
             alert(res.statusText);
